@@ -1,63 +1,8 @@
 import Sidebar from "../components/Sidebar";
 import { useMemo } from "react";
-
-type TaskStatus = "todo" | "progress" | "done" | "blocked";
-
-type Task = {
-  id: string;
-  title: string;
-  status: TaskStatus;
-};
-
-const taskNames = [
-  "Fix authentication bug in login flow",
-  "Implement invoice PDF export",
-  "Add drag & drop for Kanban board",
-  "Design analytics revenue chart",
-  "Optimize dashboard performance",
-  "Create user profile settings page",
-  "Build team invitation system",
-  "Improve notification system UI",
-  "Add file upload for tasks",
-  "Implement comment system",
-  "Fix sidebar responsiveness issue",
-  "Add task priority labels",
-  "Create project overview page",
-  "Integrate activity feed system",
-  "Improve loading states across app",
-  "Refactor API service layer",
-  "Add due date validation logic",
-  "Implement real-time task updates",
-  "Design mobile responsive layout",
-  "Add search & filter for tasks",
-];
-
-const getRandomTaskName = () =>
-  taskNames[Math.floor(Math.random() * taskNames.length)];
-
-const generateTasks = (): Task[] => {
-  const tasks: Task[] = [];
-
-  for (let i = 1; i <= 420; i++) {
-    const status: TaskStatus =
-      i < 180
-        ? "done"
-        : i < 320
-          ? "progress"
-          : i < 400
-            ? "todo"
-            : "blocked";
-
-    tasks.push({
-      id: i.toString(),
-      title: getRandomTaskName(), // ✅ REALISTIC NAME
-      status,
-    });
-  }
-
-  return tasks;
-};
-
+import { generateTasks } from "../data/tasks";
+import StatusBadge from "../components/StatusBadge";
+import TaskPieChart from "../components/TaskPieChart";
 
 export default function Dashboard() {
   const tasks = useMemo(() => generateTasks(), []);
@@ -72,137 +17,135 @@ export default function Dashboard() {
   const active = todo + progress;
 
   return (
-    <div className="flex min-h-screen bg-slate-100">
+    <div className="flex min-h-screen bg-[#F4F5F7]">
       <Sidebar />
 
-      <main className="flex-1 p-8">
+      <main className="flex-1 p-10 space-y-10">
         {/* HEADER */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
+        <div>
+          <h1 className="text-3xl font-semibold text-slate-900">
             Project Overview
           </h1>
-          <p className="text-gray-500 mt-1">
-            420 tasks across active projects
+          <p className="text-slate-500 mt-2">
+            Clean Jira-style analytics dashboard
           </p>
         </div>
 
-        {/* KPI CARDS */}
-        <div className="grid grid-cols-5 gap-6 mb-8">
-          <div className="bg-white rounded-2xl shadow-sm border p-6">
-            <p className="text-gray-500 text-sm">Total</p>
-            <h2 className="text-3xl font-bold">{total}</h2>
-          </div>
+        {/* KPI ROW */}
+        <div className="grid grid-cols-4 gap-6">
+          {[
+            ["Total Tasks", total],
+            ["Active", active],
+            ["Done", done],
+            ["Blocked", blocked],
+          ].map(([label, value]) => (
+            <div
+              key={label}
+              className="bg-white border border-slate-200 rounded-2xl p-6"
+            >
+              <p className="text-sm text-slate-500">{label}</p>
+              <h2 className="text-3xl font-semibold mt-2 text-slate-900">
+                {value}
+              </h2>
+            </div>
+          ))}
+        </div>
 
-          <div className="bg-white rounded-2xl shadow-sm border p-6">
-            <p className="text-gray-500 text-sm">Active</p>
-            <h2 className="text-3xl font-bold">{active}</h2>
-          </div>
+        {/* ANALYTICS GRID (IMPORTANT — MORE AIRY LIKE JIRA) */}
+        <div className="grid grid-cols-2 gap-8">
+          {/* LEFT: PIE CHART */}
+          <TaskPieChart
+            done={done}
+            progress={progress}
+            todo={todo}
+            blocked={blocked}
+          />
 
-          <div className="bg-white rounded-2xl shadow-sm border p-6">
-            <p className="text-gray-500 text-sm">Done</p>
-            <h2 className="text-3xl font-bold text-green-500">
-              {done}
+          {/* RIGHT: SIMPLE METRICS */}
+          <div className="bg-white border border-slate-200 rounded-2xl p-6">
+            <h2 className="font-semibold text-slate-800 mb-6">
+              Work Breakdown
             </h2>
-          </div>
 
-          <div className="bg-white rounded-2xl shadow-sm border p-6">
-            <p className="text-gray-500 text-sm">In Progress</p>
-            <h2 className="text-3xl font-bold text-indigo-600">
-              {progress}
-            </h2>
-          </div>
+            <div className="space-y-5 text-sm">
+              <div className="flex justify-between">
+                <span className="text-slate-600">Done</span>
+                <span className="text-emerald-600 font-semibold">
+                  {done}
+                </span>
+              </div>
 
-          <div className="bg-white rounded-2xl shadow-sm border p-6">
-            <p className="text-gray-500 text-sm">Blocked</p>
-            <h2 className="text-3xl font-bold text-red-500">
-              {blocked}
-            </h2>
+              <div className="flex justify-between">
+                <span className="text-slate-600">In Progress</span>
+                <span className="text-blue-600 font-semibold">
+                  {progress}
+                </span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className="text-slate-600">To Do</span>
+                <span className="text-amber-600 font-semibold">
+                  {todo}
+                </span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className="text-slate-600">Blocked</span>
+                <span className="text-rose-600 font-semibold">
+                  {blocked}
+                </span>
+              </div>
+            </div>
+
+            {/* PROGRESS BAR */}
+            <div className="mt-8">
+              <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden flex">
+                <div
+                  className="bg-emerald-500 h-full"
+                  style={{ width: `${(done / total) * 100}%` }}
+                />
+                <div
+                  className="bg-blue-500 h-full"
+                  style={{ width: `${(progress / total) * 100}%` }}
+                />
+                <div
+                  className="bg-amber-400 h-full"
+                  style={{ width: `${(todo / total) * 100}%` }}
+                />
+                <div
+                  className="bg-rose-500 h-full"
+                  style={{ width: `${(blocked / total) * 100}%` }}
+                />
+              </div>
+
+              {/* labels */}
+              <div className="flex justify-between text-xs text-slate-500 mt-2">
+                <span>Done</span>
+                <span>In Progress</span>
+                <span>To Do</span>
+                <span>Blocked</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* JIRA STYLE HEALTH BAR */}
-        <div className="bg-white rounded-2xl shadow-sm border p-6 mb-8">
-          <h2 className="font-semibold mb-4">
-            Project Health (420 tasks)
+        {/* RECENT ACTIVITY (CLEAN + AIRY LIKE JIRA) */}
+        <div className="bg-white border border-slate-200 rounded-2xl p-6">
+          <h2 className="font-semibold text-slate-800 mb-5">
+            Recent Activity
           </h2>
 
-          <div className="flex h-4 rounded-full overflow-hidden">
-            <div
-              className="bg-green-400"
-              style={{ width: `${(done / total) * 100}%` }}
-            />
-            <div
-              className="bg-indigo-600"
-              style={{ width: `${(progress / total) * 100}%` }}
-            />
-            <div
-              className="bg-gray-400"
-              style={{ width: `${(todo / total) * 100}%` }}
-            />
-            <div
-              className="bg-red-500"
-              style={{ width: `${(blocked / total) * 100}%` }}
-            />
-          </div>
+          <div className="space-y-3">
+            {tasks.slice(0, 2).map((t) => (
+              <div
+                key={t.id}
+                className="flex items-center justify-between p-4 rounded-xl hover:bg-slate-50 transition"
+              >
+                <span className="text-slate-700">{t.title}</span>
 
-          <div className="flex justify-between text-xs text-gray-500 mt-2">
-            <span>Done</span>
-            <span>In Progress</span>
-            <span>To Do</span>
-            <span>Blocked</span>
-          </div>
-        </div>
-
-        {/* WORK SUMMARY GRID */}
-        <div className="grid grid-cols-3 gap-6">
-          <div className="bg-white rounded-2xl border shadow-sm p-6">
-            <h3 className="font-semibold mb-4">
-              Work Distribution
-            </h3>
-
-            <div className="space-y-3 text-sm">
-              <div className="flex justify-between">
-                <span>Done</span>
-                <span>{done}</span>
+                <StatusBadge status={t.status} />
               </div>
-
-              <div className="flex justify-between">
-                <span>Progress</span>
-                <span>{progress}</span>
-              </div>
-
-              <div className="flex justify-between">
-                <span>Todo</span>
-                <span>{todo}</span>
-              </div>
-
-              <div className="flex justify-between text-red-500">
-                <span>Blocked</span>
-                <span>{blocked}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* RECENT ACTIVITY */}
-          <div className="col-span-2 bg-white rounded-2xl border shadow-sm p-6">
-            <h3 className="font-semibold mb-4">
-              Recent Activity
-            </h3>
-
-            <div className="space-y-2">
-              {tasks.slice(0, 8).map((t) => (
-                <div
-                  key={t.id}
-                  className="flex justify-between bg-gray-50 p-3 rounded-xl"
-                >
-                  <span>{t.title}</span>
-
-                  <span className="text-xs text-gray-500">
-                    {t.status}
-                  </span>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </main>
