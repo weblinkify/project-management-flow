@@ -1,79 +1,76 @@
-# 💸 ProjectFlow – Invoice & Billing System (SaaS Demo)
+# 🚀 ProjectFlow – Project Management SaaS
 
 ## 🌐 Live Demo  
 https://projectFlowui.netlify.app/
 
-![Dashboard](./frontend/assets/dashboard.png)
-
+![Dashboard](./frontend/assets/dashboard.png)  
 ![Board](./frontend/assets/board.png)
 
 ---
 
 ## 📌 Overview
 
-**ProjectFlow** is a modern invoice and billing management system designed for freelancers, consultants, agencies, and small-to-medium service businesses.
+**ProjectFlow** is a modern **project management and team collaboration platform** designed for developers, product teams, and agencies.
 
-It replaces traditional manual billing methods (Excel sheets, Word invoices, and static PDFs) with a centralized, automated, and cloud-based SaaS platform.
+It provides a centralized workspace to plan, track, and deliver projects efficiently using a clean Kanban-based workflow and real-time task tracking.
 
-The goal is to simplify invoice creation, improve financial visibility, and automate payment tracking.
+The goal is to improve team productivity, visibility, and workflow organization in a simple SaaS interface.
 
 ---
 
 ## 🎯 Problem It Solves
 
-Many small businesses still manage billing manually, leading to:
+Modern teams struggle with:
 
-- Late or missed payments  
-- Disorganized invoice tracking  
-- Poor cash flow visibility  
-- Tax calculation errors  
-- High administrative workload  
-- Lack of financial insights  
+- Disorganized task tracking across tools  
+- Lack of project visibility  
+- Poor workflow structure  
+- No clear progress monitoring  
+- Inefficient team collaboration  
+- Manual status updates and reporting  
 
 ---
 
 ## 💡 Solution
 
-ProjectFlow centralizes the entire billing workflow into one system:
+ProjectFlow centralizes project execution into one system:
 
-- Create and manage professional invoices instantly  
-- Track payment status in real time  
-- Manage clients and billing history  
-- Automate tax and VAT calculations  
-- Monitor revenue and overdue payments  
-- Export and share invoices digitally  
+- Create and manage projects in one workspace  
+- Track tasks using Kanban boards  
+- Monitor progress in real time  
+- Assign and organize work efficiently  
+- Improve team visibility and accountability  
+- Visualize project health through dashboards  
 
 ---
 
 ## ⚙️ Core Features
 
-### 🧾 Invoice Management
-- Create invoices with dynamic line items  
-- Auto-calculated subtotal, tax, and totals  
-- Edit, update, and delete invoices  
-- Multi-currency support (EUR, PKR)  
-- Unique invoice numbering system  
-- Status tracking:
-  - 🟢 Paid  
-  - 🟡 Unpaid  
-  - 🔴 Overdue  
+### 📋 Task & Project Management
+- Create, update, and delete tasks  
+- Organize tasks by status:
+  - 🟡 To Do  
+  - 🔵 In Progress  
+  - 🟢 Done  
+  - 🔴 Blocked  
+- Drag & drop Kanban workflow (extendable)  
+- Task prioritization support (future-ready)  
 
 ---
 
-### 👥 Client Management
-- Add and manage client profiles  
-- Store billing and contact information  
-- Track invoice history per client  
-- Search and filter clients  
+### 👥 Team Collaboration
+- Centralized project workspace  
+- Task visibility across team workflows  
+- Scalable structure for multi-project management  
 
 ---
 
 ### 📊 Analytics Dashboard
-- Revenue overview at a glance  
-- Paid vs unpaid invoice breakdown  
-- Monthly revenue trends  
-- Overdue payment insights  
-- Business performance indicators  
+- Project overview KPIs  
+- Task distribution breakdown  
+- Progress tracking  
+- Workload visibility  
+- Project health insights  
 
 ---
 
@@ -83,19 +80,8 @@ ProjectFlow centralizes the entire billing workflow into one system:
 - Secure login & registration flow  
 - Role-based access control:
   - Admin  
-  - Accountant  
-  - Staff  
-
----
-
-## 💳 Billing System Features
-
-- Automatic invoice number generation  
-- VAT / tax calculation engine  
-- Recurring invoice support  
-- Payment deadline tracking  
-- Invoice status automation  
-- Payment reminder system (future-ready)  
+  - Team Lead  
+  - Member  
 
 ---
 
@@ -120,9 +106,9 @@ ProjectFlow centralizes the entire billing workflow into one system:
 - Bcrypt
 
 ### Deployment
-- Frontend: Netlify
-- Backend: Railway / Render
-- Database: Supabase PostgreSQL
+- Frontend: Netlify  
+- Backend: Railway / Render  
+- Database: Supabase PostgreSQL  
 
 ---
 
@@ -130,59 +116,58 @@ ProjectFlow centralizes the entire billing workflow into one system:
 
 Frontend (React + TypeScript)  
 → REST API (Express.js)  
-→ Database (PostgreSQL via Prisma)  
-→ Email Service (Nodemailer)  
-→ PDF Generation Service  
+→ PostgreSQL (Prisma ORM)  
+→ Real-time Task Engine (extendable)  
+→ Analytics Layer  
 
 ---
 
 ## 📊 Business Value
 
-ProjectFlow helps businesses:
+ProjectFlow helps teams:
 
-- Save 4–8 hours per week on billing operations  
-- Reduce invoicing errors by 40%+  
-- Improve payment collection speed  
-- Increase financial transparency  
-- Strengthen cash flow management  
+- Improve task visibility  
+- Increase productivity  
+- Reduce communication overhead  
+- Enable structured project tracking  
+- Speed up delivery cycles  
 
 ---
 
-## 📱 Screens Included (Portfolio)
+## 📱 Screens Included
 
 - Authentication (Login / Register)  
-- Dashboard (Revenue overview + KPIs)  
-- Invoice Creation System  
-- Invoice Management Table  
-- Client Management Module  
+- Project Dashboard (KPIs + analytics)  
+- Kanban Board  
+- Task Management System  
+- Team Workspace  
 - Analytics Dashboard  
-- Settings / Tax configuration  
-- Fully responsive mobile UI  
+- Fully responsive UI  
 
 ---
 
 ## 🚀 Future Enhancements
 
-- PDF invoice export system  
-- Stripe / online payment integration  
-- Email invoice delivery automation  
-- Recurring invoice scheduler  
-- Multi-currency conversion  
-- AI revenue forecasting  
-- Expense tracking module  
+- Drag & drop Kanban system  
+- Real-time collaboration (WebSockets)  
+- Task comments & activity logs  
+- Gantt chart timeline view  
+- Notifications system  
+- AI task summarization  
+- Advanced role permissions  
 
 ---
 
 ## 👨‍💻 Project Status
 
 ✔ Production-ready SaaS portfolio project  
-✔ Fully functional frontend + backend architecture  
-✔ Scalable foundation for commercial SaaS product  
+✔ Fully functional full-stack architecture  
+✔ Scalable foundation for enterprise use  
 
 ---
 
 ## 👤 Author
 
 **Daniyal Tariq**  
-Web Apps Developer for Finnish SMEs  
-React | Node.js | SaaS Systems | UI Engineering  
+Web Apps Developer  
+React • Node.js • SaaS Systems • UI Engineering
